@@ -4,15 +4,27 @@ class Hoge < ActiveRecord::Base
   spider_at :default
 end
 
+class TableDefinition
+  attr_accessor :name, :options, :columns, :indexes, :temporary, :as
+
+  def initialize
+    @name = "hoges"
+    @options = "ENGINE=InnoDB"
+    @columns = []
+    @indexes = []
+  end
+end
+
+
 describe Tetragnatha::SchemaCreation do
   describe "#visit_TableDefinition_with_tetragnatha" do
 
     let(:table_definition) do
-      OpenStruct.new(name: "hoges", options: "ENGINE=InnoDB", columns: [])
+      TableDefinition.new
     end
 
     let(:schema_creation) do
-      ActiveRecord::ConnectionAdapters::AbstractAdapter::SchemaCreation.new(nil)
+      ActiveRecord::ConnectionAdapters::AbstractMysqlAdapter::SchemaCreation.new(nil)
     end
 
     before do
@@ -47,12 +59,7 @@ describe Tetragnatha::SchemaCreation do
     end
 
     it "returns create table sql with comment for default endpoint" do
-      expect(subject).to eq(
-<<-SQL
-CREATE TABLE hoges () ENGINE=InnoDB COMMENT 'host "localhost", user "usr", password "passwd", port "3306"'
-SQL
-      )
+      expect(subject).to eq("CREATE TABLE hoges ENGINE=SPIDER COMMENT 'host \"localhost\", user \"usr\", password \"passwd\", port \"3306\"'")
     end
-
   end
 end

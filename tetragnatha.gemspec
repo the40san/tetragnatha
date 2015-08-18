@@ -16,8 +16,9 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["lib/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   spec.test_files = Dir["spec/**/*"]
+  spec.require_paths = ["lib"]
 
-  spec.add_dependency "active_record", ">= 4.2.0"
+  spec.add_dependency "activerecord", ">= 4.2.0"
   spec.add_dependency "mysql2"
 
   spec.add_development_dependency "rspec-rails"
