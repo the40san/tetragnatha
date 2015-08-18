@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors     = ["Masashi AKISUE"]
   spec.email       = ["masashi.akisue@aktsk.jp"]
   spec.homepage    = "https://github.com/aktsk/tetragnatha"
-  spec.summary     = "ActiveRecord plugin for MySQL Spider storage engine"
-  spec.description = "ActiveRecord plugin for MySQL Spider storage engine"
+  spec.summary     = "Table migration plugin for MySQL Spider storage engine"
+  spec.description = "Table migration plugin for MySQL Spider storage engine"
   spec.license     = "MIT"
 
   spec.files = Dir["lib/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
