@@ -14,11 +14,12 @@ Gem::Specification.new do |spec|
   spec.description = "ActiveRecord plugin for MySQL Spider storage engine"
   spec.license     = "MIT"
 
-  spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  spec.files = Dir["lib/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   spec.test_files = Dir["spec/**/*"]
 
-  spec.add_dependency "rails", ">= 4.2.0"
+  spec.add_dependency "active_record", ">= 4.2.0"
   spec.add_dependency "mysql2"
 
   spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "database_cleaner"
 end
