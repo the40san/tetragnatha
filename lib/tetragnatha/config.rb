@@ -29,7 +29,7 @@ module Tetragnatha
     private
 
     def database_configurations
-      ActiveRecord::Base.configurations.with_indifferent_access[@name]
+      ActiveRecord::Base.configurations.with_indifferent_access[@name] || {}
     end
   end
 end

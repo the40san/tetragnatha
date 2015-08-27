@@ -12,7 +12,13 @@ module Tetragnatha
       end
 
       def spider_config
-        @config ||= Config.new(@spider_at)
+        if @spider_at
+          Config.new(@spider_at)
+        elsif self == ActiveRecord::Base
+          Config.new("default")
+        else
+          superclass.spider_config
+        end
       end
     end
   end
