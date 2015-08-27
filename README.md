@@ -8,7 +8,7 @@ gem "tetragnatha"
 ## Usage
 
 1. Write your spider endpoint to your database.yml
-```
+```yaml
 # config/database.yml
 
 spider_endpoint1:
@@ -20,8 +20,9 @@ spider_endpoint1:
 
 2. Add your spider endpoint settings to your models like below
 
-```
+```ruby
 # app/models/user.rb
+
 class User < ActiveRecord::Base
   spider_at :spider_endpoint1
 end
