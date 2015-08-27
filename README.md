@@ -2,7 +2,7 @@
 1. add this to your Gemfile
 
 ```
-gem "tetragnatha"
+WIP
 ```
 
 ## Usage
