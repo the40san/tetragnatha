@@ -2,7 +2,7 @@
 1. add this to your Gemfile
 
 ```
-WIP
+gem install tetragnatha
 ```
 
 ## Usage
