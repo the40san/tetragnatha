@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files = Dir["spec/**/*"]
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "activerecord", ">= 4.2.0"
+  spec.add_dependency "rails", ">= 4.2.0"
   spec.add_dependency "mysql2"
 
   spec.add_development_dependency "rspec-rails"
