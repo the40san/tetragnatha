@@ -4,31 +4,18 @@ class Hoge < ActiveRecord::Base
   spider_at :default
 end
 
-class TableDefinition
-  attr_accessor :name, :options, :columns, :indexes, :temporary, :as
-
-  def initialize
-    @name = "hoges"
-    @options = "ENGINE=InnoDB"
-    @columns = []
-    @indexes = []
-  end
-end
-
-
-describe Tetragnatha::SchemaCreation do
-  describe "#visit_TableDefinition_with_tetragnatha" do
-
+describe Tetragnatha::ConnectionAdapters::TableDefinition do
+  describe "#initialize" do
     let(:table_definition) do
-      TableDefinition.new
+      ActiveRecord::ConnectionAdapters::AbstractMysqlAdapter::TableDefinition.new("hoges", nil, nil, nil)
     end
-
     let(:schema_creation) do
       ActiveRecord::ConnectionAdapters::AbstractMysqlAdapter::SchemaCreation.new(nil)
     end
 
     before do
       allow(schema_creation).to receive(:quote_table_name).and_return("hoges")
+      allow_any_instance_of(Tetragnatha::ConnectionAdapters::TableDefinition::CommentBuilder).to receive(:get_model).and_return(Hoge)
 
       ActiveRecord::Base.configurations = {
         "default" => {
@@ -55,7 +42,7 @@ describe Tetragnatha::SchemaCreation do
     end
 
     subject do
-      schema_creation.visit_TableDefinition_with_tetragnatha(table_definition)
+      schema_creation.__send__(:visit_TableDefinition, table_definition)
     end
 
     it "returns create table sql with comment for default endpoint" do
